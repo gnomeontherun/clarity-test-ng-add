@@ -2,5 +2,13 @@
 
 ng new sample
 cd sample
-ng add @clr/angular
-ng build --prod
+if ! ng add @clr/angular
+then
+    echo "Failed to add Clarity"
+    exit 1
+fi
+if ! ng build --prod
+then
+    echo "Failed to build after adding Clarity"
+    exit 1
+fi
