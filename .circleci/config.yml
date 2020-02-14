@@ -1,4 +1,4 @@
-version: 2
+version: 2.1
 jobs:
   latest_latest:
     docker:
@@ -6,25 +6,35 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
-      - run: test.sh latest latest
+      - run: sh test.sh latest latest
   latest_next:
     docker:
       - image: circleci/node:lts-jessie
     working_directory: ~/repo
     steps:
       - checkout
-      - run: test.sh latest next
+      - run: sh test.sh latest next
   next_latest:
     docker:
       - image: circleci/node:lts-jessie
     working_directory: ~/repo
     steps:
       - checkout
-      - run: test.sh next latest
+      - run: sh test.sh next latest
   next_next:
     docker:
       - image: circleci/node:lts-jessie
     working_directory: ~/repo
     steps:
       - checkout
-      - run: test.sh next next
+      - run: sh test.sh next next
+
+# Workflows
+workflows:
+  version: 2.1
+  test:
+    jobs:
+      - latest_latest
+      - latest_next
+      - next_latest
+      - next_next
