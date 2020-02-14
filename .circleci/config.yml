@@ -1,0 +1,30 @@
+version: 2
+jobs:
+  latest_latest:
+    docker:
+      - image: circleci/node:lts-jessie
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run: test.sh latest latest
+  latest_next:
+    docker:
+      - image: circleci/node:lts-jessie
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run: test.sh latest next
+  next_latest:
+    docker:
+      - image: circleci/node:lts-jessie
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run: test.sh next latest
+  next_next:
+    docker:
+      - image: circleci/node:lts-jessie
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run: test.sh next next
